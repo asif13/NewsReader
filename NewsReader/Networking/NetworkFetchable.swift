@@ -39,7 +39,6 @@ extension NetworkFetchable {
                 completion(.failure(NetworkErrors.serverError))
                 return
             }
-            print(String(data: data, encoding: .utf8)!)
             completion(.success(data))
         }
         

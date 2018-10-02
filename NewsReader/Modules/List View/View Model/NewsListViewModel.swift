@@ -20,7 +20,6 @@ class NewsListViewModel : NetworkFetchable {
             DispatchQueue.main.async {
                 switch status {
                 case .success(let data):
-                    print(data)
                     let decoder = JSONDecoder()
                     
                     guard  let newsResponse = try? decoder.decode(NewsModel.self, from: data)  else {

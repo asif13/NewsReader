@@ -12,6 +12,7 @@ class NewsListViewController: UIViewController {
    
     let viewModel = NewsListViewModel()
     
+    @IBOutlet weak var newsListTbl: NewsListTableView!
     override func viewDidLoad() {
         super.viewDidLoad()
         loadNewsData()
@@ -22,7 +23,9 @@ class NewsListViewController: UIViewController {
             DispatchQueue.main.async {
                 switch status{
                 case .success(let news):
-                    print(news)
+                    if let newsResults = news.results{
+                        self?.newsListTbl.model = newsResults
+                    }
                 case .failure(let error):
                     self?.alert(message: error)
                 }
