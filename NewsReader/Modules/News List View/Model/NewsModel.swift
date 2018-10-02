@@ -14,6 +14,7 @@ struct NewsModel : Codable {
 }
 struct News : Codable {
     var section : String?
+    var url : String?
     var subsection : String?
     var title : String?
     var abstract : String?
