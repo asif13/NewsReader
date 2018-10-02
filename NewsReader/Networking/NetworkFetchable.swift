@@ -22,7 +22,7 @@ extension NetworkFetchable {
     func fetchData(url : URL?, completion: @escaping ((NetworkResponseStatus) -> ())){
         
         guard let `url` = url else {
-            completion(.failure(NetworkErrors.serverError.rawValue))
+            completion(.failure(NetworkErrors.serverError))
             return
         }
         
@@ -31,12 +31,12 @@ extension NetworkFetchable {
         
         let task = URLSession.shared.dataTask(with: request) {(data, response, error) in
             guard error == nil else {
-                completion(.failure(error?.localizedDescription ?? NetworkErrors.serverError.rawValue))
+                completion(.failure(error?.localizedDescription ?? NetworkErrors.serverError))
                 return
             }
             
             guard let data = data else {
-                completion(.failure(NetworkErrors.serverError.rawValue))
+                completion(.failure(NetworkErrors.serverError))
                 return
             }
             print(String(data: data, encoding: .utf8)!)

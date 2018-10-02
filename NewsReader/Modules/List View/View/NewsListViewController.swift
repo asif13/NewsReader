@@ -8,15 +8,21 @@
 
 import UIKit
 
-class NewsListViewController: UIViewController,NetworkFetchable {
-
+class NewsListViewController: UIViewController {
+   
+    let viewModel = NewsListViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        fetchData(url: URLs.topStories){ [weak self] status in
+        loadNewsData()
+    }
+    
+    func loadNewsData(){
+        viewModel.loadNews { [weak self] (status) in
             DispatchQueue.main.async {
-                switch status {
-                case .success(let data):
-                    print(data)
+                switch status{
+                case .success(let news):
+                    print(news)
                 case .failure(let error):
                     self?.alert(message: error)
                 }

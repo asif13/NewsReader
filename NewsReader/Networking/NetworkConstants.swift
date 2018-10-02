@@ -15,6 +15,6 @@ struct URLs {
     static let topStories = URL(string: "https://api.nytimes.com/svc/topstories/v2/home.json")
 }
 
-enum NetworkErrors : String {
-    case serverError = "Cannot connect to server.Please try again later."
+struct NetworkErrors {
+    static let serverError = "Cannot connect to server.Please try again later."
 }
