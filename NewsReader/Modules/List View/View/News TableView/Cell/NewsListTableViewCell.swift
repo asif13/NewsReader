@@ -7,13 +7,13 @@
 //
 
 import UIKit
-
+import SDWebImage
 class NewsListTableViewCell: UITableViewCell {
 
     @IBOutlet weak var titleLbl: UILabel!
     @IBOutlet weak var sectionLbl: UILabel!
-    @IBOutlet weak var dateLbl: UILabel!
     @IBOutlet weak var byLineLbl: UILabel!
+    @IBOutlet weak var thumbnailImg: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -27,7 +27,29 @@ class NewsListTableViewCell: UITableViewCell {
     func updateCell(news : News){
         titleLbl.text = news.title ?? ""
         sectionLbl.text = news.section ?? ""
-//        dateLbl.text = news.da ?? ""
         byLineLbl.text = news.byline ?? ""
+
+        guard let thumbnailStr = news.multimedia?.filter({$0.format == "thumbLarge"}).first?.url,
+        let thumbnailUrl = URL(string: thumbnailStr)
+        else {
+            thumbnailImg.image = UIImage(named: "imageplaceholder")
+            return
+        }
+        
+        //Set SDWebImage to download image async
+        thumbnailImg.sd_setShowActivityIndicatorView(true)
+        
+        thumbnailImg.sd_setIndicatorStyle(.gray)
+        
+        thumbnailImg?.sd_setImage(with: thumbnailUrl) { [weak self] (image, error, cache, url) in
+            DispatchQueue.main.async {
+                guard error == nil else {
+                    self?.thumbnailImg.image = UIImage(named: "imageplaceholder")
+                    return
+                }
+                
+                self?.thumbnailImg.image = image
+            }
+        }
     }
 }

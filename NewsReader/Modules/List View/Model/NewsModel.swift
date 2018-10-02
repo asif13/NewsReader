@@ -18,4 +18,10 @@ struct News : Codable {
     var title : String?
     var abstract : String?
     var byline : String?
+    var multimedia : [NewsMultimedia]?
+}
+
+struct NewsMultimedia : Codable {
+    var url : String?
+    var format : String?
 }
