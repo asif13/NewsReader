@@ -20,6 +20,7 @@ class NewsListViewController: UIViewController {
     }
     
     func loadNewsData(){
+        ActivityIndicator.shared.showProgressView()
         viewModel.loadNews { [weak self] (status) in
             DispatchQueue.main.async {
                 switch status{
@@ -30,6 +31,7 @@ class NewsListViewController: UIViewController {
                 case .failure(let error):
                     self?.alert(message: error)
                 }
+                ActivityIndicator.shared.hideProgressView()
             }
         }
     }
