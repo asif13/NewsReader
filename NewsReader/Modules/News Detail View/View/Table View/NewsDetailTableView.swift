@@ -38,7 +38,8 @@ extension NewsDetailTableView : UITableViewDelegate,UITableViewDataSource{
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? NewsDetailTableViewCell else {
             return UITableViewCell()
         }
-        cell.updateCell(index: indexPath.row, news: model)
+        
+        cell.updateCell(cellType: NewsDetailCellType(rawValue: indexPath.row) ?? .description , news: model)
         return cell
     }
   

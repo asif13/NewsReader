@@ -17,6 +17,8 @@
 		8E6371192163BF300011BBE0 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6371182163BF300011BBE0 /* WebViewController.swift */; };
 		8E63711C2163BFB00011BBE0 /* WebViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E63711B2163BFB00011BBE0 /* WebViewModel.swift */; };
 		8E63711F2163C6680011BBE0 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E63711E2163C6680011BBE0 /* ActivityIndicator.swift */; };
+		8E6371212163DF0C0011BBE0 /* ImageFetchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6371202163DF0C0011BBE0 /* ImageFetchable.swift */; };
+		8E6371232163E2580011BBE0 /* UIView+NewsReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6371222163E2580011BBE0 /* UIView+NewsReader.swift */; };
 		8E96067221623E1A00298C8A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E96067121623E1A00298C8A /* AppDelegate.swift */; };
 		8E96067721623E1A00298C8A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8E96067521623E1A00298C8A /* Main.storyboard */; };
 		8E96067921623E1A00298C8A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E96067821623E1A00298C8A /* Assets.xcassets */; };
@@ -55,6 +57,8 @@
 		8E6371182163BF300011BBE0 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		8E63711B2163BFB00011BBE0 /* WebViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewModel.swift; sourceTree = "<group>"; };
 		8E63711E2163C6680011BBE0 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
+		8E6371202163DF0C0011BBE0 /* ImageFetchable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFetchable.swift; sourceTree = "<group>"; };
+		8E6371222163E2580011BBE0 /* UIView+NewsReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+NewsReader.swift"; sourceTree = "<group>"; };
 		8E96066E21623E1A00298C8A /* NewsReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewsReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E96067121623E1A00298C8A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8E96067621623E1A00298C8A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -198,9 +202,9 @@
 		8E96067021623E1A00298C8A /* NewsReader */ = {
 			isa = PBXGroup;
 			children = (
-				8E63711D2163C6500011BBE0 /* Components */,
 				8E96069D2163470C00298C8A /* Extensions */,
-				8E960693216241D100298C8A /* Networking */,
+				8E960693216241D100298C8A /* Protocols */,
+				8E63711D2163C6500011BBE0 /* Components */,
 				8E96069121623FB700298C8A /* Modules */,
 				8E96067121623E1A00298C8A /* AppDelegate.swift */,
 				8E96067521623E1A00298C8A /* Main.storyboard */,
@@ -240,13 +244,14 @@
 			path = "News List View";
 			sourceTree = "<group>";
 		};
-		8E960693216241D100298C8A /* Networking */ = {
+		8E960693216241D100298C8A /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				8E6371202163DF0C0011BBE0 /* ImageFetchable.swift */,
 				8E960694216242BE00298C8A /* NetworkFetchable.swift */,
 				8E96069B2163384400298C8A /* NetworkConstants.swift */,
 			);
-			path = Networking;
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 		8E9606962163333000298C8A /* Model */ = {
@@ -279,6 +284,7 @@
 			children = (
 				8E96069E2163472400298C8A /* UIViewController+NewsReader.swift */,
 				8E63710F216398E40011BBE0 /* UIStoryboard+NewsReader.swift */,
+				8E6371222163E2580011BBE0 /* UIView+NewsReader.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -482,6 +488,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8E6371212163DF0C0011BBE0 /* ImageFetchable.swift in Sources */,
 				8E9606A321634E4700298C8A /* NewsModel.swift in Sources */,
 				8E9606AC21635A4100298C8A /* NewsListTableViewCell.swift in Sources */,
 				8E96069C2163384400298C8A /* NetworkConstants.swift in Sources */,
@@ -498,6 +505,7 @@
 				8E637110216398E40011BBE0 /* UIStoryboard+NewsReader.swift in Sources */,
 				8E6371192163BF300011BBE0 /* WebViewController.swift in Sources */,
 				8E9606A121634D9A00298C8A /* NewsListViewModel.swift in Sources */,
+				8E6371232163E2580011BBE0 /* UIView+NewsReader.swift in Sources */,
 				8E63711F2163C6680011BBE0 /* ActivityIndicator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

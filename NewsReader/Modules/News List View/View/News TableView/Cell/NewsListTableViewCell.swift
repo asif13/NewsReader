@@ -7,9 +7,9 @@
 //
 
 import UIKit
-import SDWebImage
-class NewsListTableViewCell: UITableViewCell {
+class NewsListTableViewCell: UITableViewCell,ImageFetchable{
 
+    @IBOutlet weak var backgroundCellView: UIView!
     @IBOutlet weak var titleLbl: UILabel!
     @IBOutlet weak var sectionLbl: UILabel!
     @IBOutlet weak var byLineLbl: UILabel!
@@ -17,6 +17,7 @@ class NewsListTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        backgroundCellView.dropShadow()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -35,21 +36,6 @@ class NewsListTableViewCell: UITableViewCell {
             thumbnailImg.image = UIImage(named: "imageplaceholder")
             return
         }
-        
-        //Set SDWebImage to download image async
-        thumbnailImg.sd_setShowActivityIndicatorView(true)
-        
-        thumbnailImg.sd_setIndicatorStyle(.gray)
-        
-        thumbnailImg?.sd_setImage(with: thumbnailUrl) { [weak self] (image, error, cache, url) in
-            DispatchQueue.main.async {
-                guard error == nil else {
-                    self?.thumbnailImg.image = UIImage(named: "imageplaceholder")
-                    return
-                }
-                
-                self?.thumbnailImg.image = image
-            }
-        }
+        loadImage(url: thumbnailUrl, imageView: thumbnailImg)
     }
 }

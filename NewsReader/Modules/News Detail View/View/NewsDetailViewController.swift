@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NewsDetailViewController: UIViewController {
+class NewsDetailViewController: UIViewController,ImageFetchable {
     var viewModel : NewsDetailViewModel?
     @IBOutlet weak var newsDetailTbl: NewsDetailTableView!
     @IBOutlet weak var thumbnailImg: UIImageView!
@@ -40,21 +40,7 @@ class NewsDetailViewController: UIViewController {
                 thumbnailImg.image = UIImage(named: "imageplaceholder")
                 return
         }
-        //Set SDWebImage to download image async
-        thumbnailImg.sd_setShowActivityIndicatorView(true)
-        
-        thumbnailImg.sd_setIndicatorStyle(.gray)
-     
-        thumbnailImg.sd_setImage(with: thumbnailUrl) { [weak self] (image, error, cache, url) in
-            DispatchQueue.main.async {
-                guard error == nil else {
-                    self?.thumbnailImg.image = UIImage(named: "imageplaceholder")
-                    return
-                }
-                
-                self?.thumbnailImg.image = image
-            }
-        }
+       loadImage(url: thumbnailUrl, imageView: thumbnailImg)
     }
     
     @IBAction func readMoreAction(_ sender: UIButton) {

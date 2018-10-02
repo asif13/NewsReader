@@ -7,7 +7,11 @@
 //
 
 import UIKit
-
+enum NewsDetailCellType : Int {
+    case title
+    case byLine
+    case description
+}
 class NewsDetailTableViewCell: UITableViewCell {
 
     @IBOutlet weak var detail: UILabel!
@@ -21,16 +25,17 @@ class NewsDetailTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    func updateCell(index : Int,news : News?){
-        switch index {
-        case 0:
-            detail.text = news?.title ?? ""
-        case 1:
-            detail.text = news?.byline ?? ""
-        case 2:
-            detail.text = news?.abstract ?? ""
-        default:
-            detail.text = ""
+    func updateCell(cellType : NewsDetailCellType,news : News?){
+        switch cellType {
+            case .title:
+                detail.text = news?.title ?? ""
+            case .byLine:
+                detail.text = news?.byline ?? ""
+                detail.font = UIFont.systemFont(ofSize: 12)
+                detail.textColor = UIColor.black.withAlphaComponent(0.6)
+            case .description:
+                detail.text = news?.abstract ?? ""
+                detail.textColor = UIColor.black.withAlphaComponent(0.8)
         }
     }
 }
