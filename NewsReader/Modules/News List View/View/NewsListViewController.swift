@@ -11,11 +11,12 @@ import UIKit
 class NewsListViewController: UIViewController {
    
     let viewModel = NewsListViewModel()
-    
     @IBOutlet weak var newsListTbl: NewsListTableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         loadNewsData()
+        addTableViewActions()
     }
     
     func loadNewsData(){
@@ -29,6 +30,17 @@ class NewsListViewController: UIViewController {
                 case .failure(let error):
                     self?.alert(message: error)
                 }
+            }
+        }
+    }
+    func addTableViewActions(){
+        newsListTbl.didSelectItem = { [weak self] news in
+            DispatchQueue.main.async {
+                guard let detailVC : NewsDetailViewController = UIStoryboard.instance(identifier : "NewsDetailVC") else {
+                    return
+                }
+                detailVC.viewModel = NewsDetailViewModel(news: news)
+                self?.navigationController?.pushViewController(detailVC, animated: true)
             }
         }
     }

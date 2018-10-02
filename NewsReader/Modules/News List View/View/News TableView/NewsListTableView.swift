@@ -15,6 +15,7 @@ class NewsListTableView: UITableView {
         }
     }
     let cellIdentifier = "NewsListTableViewCell"
+    var didSelectItem : ((_ news : News)->())?
     override init(frame: CGRect, style: UITableView.Style) {
         super.init(frame: frame, style: style)
         setup()
@@ -41,5 +42,7 @@ extension NewsListTableView : UITableViewDelegate,UITableViewDataSource{
         cell.updateCell(news: model[indexPath.row])
         return cell
     }
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        didSelectItem?(model[indexPath.row])
+    }
 }

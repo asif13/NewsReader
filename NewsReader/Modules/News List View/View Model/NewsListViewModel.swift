@@ -12,6 +12,10 @@ enum NewsResponseStatus {
     case success(NewsModel)
     case failure(String)
 }
+enum NewsImageTypes : String {
+    case thumbnail = "thumbLarge"
+    case medium = "mediumThreeByTwo210"
+}
 class NewsListViewModel : NetworkFetchable {
     
     //Loads the news and updates the view with News model

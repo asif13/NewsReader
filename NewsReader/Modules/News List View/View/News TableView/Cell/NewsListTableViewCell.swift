@@ -29,7 +29,7 @@ class NewsListTableViewCell: UITableViewCell {
         sectionLbl.text = news.section ?? ""
         byLineLbl.text = news.byline ?? ""
 
-        guard let thumbnailStr = news.multimedia?.filter({$0.format == "thumbLarge"}).first?.url,
+        guard let thumbnailStr = news.multimedia?.filter({$0.format == NewsImageTypes.thumbnail.rawValue}).first?.url,
         let thumbnailUrl = URL(string: thumbnailStr)
         else {
             thumbnailImg.image = UIImage(named: "imageplaceholder")
