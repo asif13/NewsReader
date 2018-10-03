@@ -40,8 +40,12 @@ class ActivityIndicator {
     }
     
     func hideProgressView() {
+        guard activityIndicator.isAnimating else { return }
         activityIndicator.stopAnimating()
         containerView.removeFromSuperview()
+    }
+    func isAnimating()->Bool{
+        return activityIndicator.isAnimating
     }
 }
 

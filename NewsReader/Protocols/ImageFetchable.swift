@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import SDWebImage
 protocol ImageFetchable {
     func loadImage(url : URL,imageView : UIImageView)
 }
